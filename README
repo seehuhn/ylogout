@@ -1,0 +1,2 @@
+YLogout is a replacement for XLogout.  It is session manager aware and
+supports the X11R6 session management mechanism.

@@ -1,0 +1,5 @@
+1998-05-20  Jochen Voss  <voss@tatonka.pfalz.de>
+
+	* pixmapdimen.c, pixmapdimen.h, configure.in, Makefile.am,
+	Button.c, Button.h, ButtonP.h: New file.
+

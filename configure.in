@@ -1,0 +1,18 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(ylogout.c)
+AM_INIT_AUTOMAKE(ylogout, 0.2)
+
+dnl Checks for programs.
+AC_PROG_CC
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
+AC_PATH_XTRA
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+
+dnl Checks for library functions.
+
+AC_OUTPUT(Makefile)

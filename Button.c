@@ -2,7 +2,7 @@
  *
  * Copyright (C) 1998  Jochen Voss.  */
 
-static const  char  rcsid[] = "$Id: Button.c,v 1.1 1998/05/20 20:52:35 voss Exp $";
+static const  char  rcsid[] = "$Id$";
 
 #include <X11/IntrinsicP.h>
 #include <X11/StringDefs.h>

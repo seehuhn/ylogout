@@ -2,7 +2,7 @@
  *
  * Copyright (C) 1998  Jochen Voss.  */
 
-static const  char  rcsid[] = "$Id: pixmapdimen.c,v 1.1 1998/05/20 20:57:44 voss Exp $";
+static const  char  rcsid[] = "$Id$";
 
 
 #include <X11/Xlib.h>

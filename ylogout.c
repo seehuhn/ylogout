@@ -2,7 +2,7 @@
  *
  * Copyright (C) 1998  Jochen Voss.  */
 
-static const  char  rcsid[] = "$Id: ylogout.c,v 1.3 1998/09/09 16:19:20 voss Exp $";
+static const  char  rcsid[] = "$Id$";
 
 
 #include <stdio.h>

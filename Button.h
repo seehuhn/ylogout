@@ -2,7 +2,7 @@
  *
  * Copyright (C) 1998  Jochen Voss.
  *
- * $Id: Button.h,v 1.1 1998/05/20 20:52:35 voss Exp $ */
+ * $Id$ */
 
 #ifndef FILE_BUTTON_H_SEEN
 #define FILE_BUTTON_H_SEEN

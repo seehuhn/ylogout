@@ -1,6 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(ylogout.c)
-AM_INIT_AUTOMAKE(ylogout, 0.2)
+AC_REVISION($Revision$)
+
+AC_INIT(ylogout.c, 0.2, voss@seehuhn.de)
+AC_CONFIG_SRCDIR([ylogout.c])
+AM_INIT_AUTOMAKE
 
 dnl Checks for programs.
 AC_PROG_CC

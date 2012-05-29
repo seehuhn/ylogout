@@ -1,5 +1,4 @@
 ## Process this file with automake to produce Makefile.in
-# $Id$
 
 bin_PROGRAMS = ylogout
 ylogout_SOURCES = Button.c ButtonP.h Button.h \

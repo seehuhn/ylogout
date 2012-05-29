@@ -1,2 +1,5 @@
 YLogout is a replacement for XLogout.  It is session manager aware and
 supports the X11R6 session management mechanism.
+
+Note: This program is long obsolete.  It comes from a time when X11R6 was
+new and exciting, and when the 'xlogout' program was in common use.

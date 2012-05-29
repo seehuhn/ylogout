@@ -2,8 +2,6 @@
  *
  * Copyright (C) 1998  Jochen Voss.  */
 
-static const  char  rcsid[] = "$Id$";
-
 #include <X11/IntrinsicP.h>
 #include <X11/StringDefs.h>
 #include <X11/extensions/shape.h>
@@ -14,7 +12,7 @@ static const  char  rcsid[] = "$Id$";
 
 /**********************************************************************
  * Resource management - This section defines the resources introduced
- *			 by the Button widget class.
+ *                       by the Button widget class.
  */
 
 static XtResource resources[] = {
@@ -24,7 +22,7 @@ static XtResource resources[] = {
   {XtNactiveIcon, XtCIcon, XtRIcon, sizeof(struct icon),
    XtOffset(ButtonWidget, button.active_icon),
    XtRString, ButtonActiveIcon },
-  {XtNcallback, XtCCallback, XtRCallback, sizeof(XtCallbackList), 
+  {XtNcallback, XtCCallback, XtRCallback, sizeof(XtCallbackList),
    XtOffset(ButtonWidget, button.callbacks),
    XtRCallback, (XtPointer)NULL},
   {XtNshapeWindow, XtCShapeWindow, XtRBoolean, sizeof (Boolean),
@@ -39,8 +37,8 @@ static  struct icon  cvt_icon_return;
 
 static Boolean
 ButtonCvtStringToIcon(Display* dpy, XrmValue *args, Cardinal *num_args,
-		      XrmValue *fromVal, XrmValue *toVal,
-		      XtPointer *converter_data)
+                      XrmValue *fromVal, XrmValue *toVal,
+                      XtPointer *converter_data)
 /* Convert a string into an icon.  This takes a screen as a converter
  * argument.  */
 {
@@ -51,10 +49,10 @@ ButtonCvtStringToIcon(Display* dpy, XrmValue *args, Cardinal *num_args,
 
   if (*num_args != 1) {
     XtAppWarningMsg (XtDisplayToApplicationContext(dpy),
-		     "wrongParameters", "cvtStringToIcon", "ButtonError",
-		     "String to Icon conversion requires a screen argument",
-		     (String *) NULL,
-		     (Cardinal *)NULL);
+                     "wrongParameters", "cvtStringToIcon", "ButtonError",
+                     "String to Icon conversion requires a screen argument",
+                     (String *) NULL,
+                     (Cardinal *)NULL);
     return  False;
   }
 
@@ -68,35 +66,35 @@ ButtonCvtStringToIcon(Display* dpy, XrmValue *args, Cardinal *num_args,
 
   if (strcasecmp (name, ButtonDefaultIcon) == 0) {
     res = XpmCreatePixmapFromData (DisplayOfScreen (screen),
-				   RootWindowOfScreen (screen),
-				   default_image_xpm,
-				   &icon.foreground, &icon.mask, NULL);
+                                   RootWindowOfScreen (screen),
+                                   default_image_xpm,
+                                   &icon.foreground, &icon.mask, NULL);
   } else if (strcasecmp (name, ButtonActiveIcon) == 0) {
     res = XpmCreatePixmapFromData (DisplayOfScreen (screen),
-				   RootWindowOfScreen (screen),
-				   active_image_xpm,
-				   &icon.foreground, &icon.mask, NULL);
+                                   RootWindowOfScreen (screen),
+                                   active_image_xpm,
+                                   &icon.foreground, &icon.mask, NULL);
   } else {
     res = XpmReadFileToPixmap (DisplayOfScreen (screen),
-			       RootWindowOfScreen (screen),
-			       name, &icon.foreground, &icon.mask, NULL);
+                               RootWindowOfScreen (screen),
+                               name, &icon.foreground, &icon.mask, NULL);
   }
 
   if (res<0) {
     Cardinal  num_args = 2;
     String  args[num_args];
-    
+
     args[0] = name;
     args[1] = XpmGetErrorString (res);
     XtAppWarningMsg (XtDisplayToApplicationContext(dpy),
-		     "loadError",
-		     "loadIcons", "ButtonWarning",
-		     "\"%s\": %s",
-		     args, &num_args);
+                     "loadError",
+                     "loadIcons", "ButtonWarning",
+                     "\"%s\": %s",
+                     args, &num_args);
     XtStringConversionWarning((String)fromVal->addr, "Icon");
     return  False;
   }
-  
+
   if (toVal->addr != NULL) {
     /* We checked `toVal->size >= sizeof (struct icon)'
      * at the beginning of the function.  */
@@ -111,7 +109,7 @@ ButtonCvtStringToIcon(Display* dpy, XrmValue *args, Cardinal *num_args,
 
 static void
 FreeIcon (XtAppContext app, XrmValue *toVal, XtPointer converter_data,
-	     XrmValue *args, Cardinal *num_args)
+             XrmValue *args, Cardinal *num_args)
 /* Free the memory allocated by an icon.  */
 {
   Screen *screen;
@@ -120,8 +118,8 @@ FreeIcon (XtAppContext app, XrmValue *toVal, XtPointer converter_data,
 
   if (*num_args != 1) {
     XtAppErrorMsg (app, "wrongParameters", "freeIcon", "ButtonError",
-		   "Freeing an icon needs a screen argument",
-		   (String *) NULL, (Cardinal *)NULL);
+                   "Freeing an icon needs a screen argument",
+                   (String *) NULL, (Cardinal *)NULL);
     return;
   }
 
@@ -146,8 +144,8 @@ static void
 ClassInitialize (void)
 {
   XtSetTypeConverter (XtRString, XtRIcon, ButtonCvtStringToIcon,
-		      iconConvertArgs, XtNumber(iconConvertArgs),
-		      XtCacheByDisplay, FreeIcon);
+                      iconConvertArgs, XtNumber(iconConvertArgs),
+                      XtCacheByDisplay, FreeIcon);
 }
 
 static void
@@ -179,13 +177,13 @@ Initialize (Widget request, Widget new, ArgList args, Cardinal *num_args)
   part->normal_y = (ww->core.height - height1)/2;
   part->active_x = (ww->core.width - width2)/2;
   part->active_y = (ww->core.height - height2)/2;
-  
+
   part->gc
     = XtAllocateGC (new, 0, 0, NULL, 0,
-		    GCForeground|GCBackground|GCLineWidth|GCLineStyle
-		      |GCCapStyle|GCJoinStyle|GCFillStyle|GCFillRule|GCArcMode
-		      |GCTile|GCStipple|GCTileStipXOrigin|GCTileStipYOrigin
-		      |GCFont|GCDashOffset|GCDashList);
+                    GCForeground|GCBackground|GCLineWidth|GCLineStyle
+                      |GCCapStyle|GCJoinStyle|GCFillStyle|GCFillRule|GCArcMode
+                      |GCTile|GCStipple|GCTileStipXOrigin|GCTileStipYOrigin
+                      |GCFont|GCDashOffset|GCDashList);
   part->set = False;
   if (part->shape_window)  part->update_shape = True;
 }
@@ -213,9 +211,9 @@ set_window_shape (ButtonWidget ww)
     x += parent->core.y + parent->core.border_width;
   }
   XShapeCombineMask (XtDisplay (parent), XtWindow (parent), ShapeBounding,
-		     x, y,
-		     part->set ? part->active_icon.mask : part->icon.mask,
-		     ShapeSet);
+                     x, y,
+                     part->set ? part->active_icon.mask : part->icon.mask,
+                     ShapeSet);
   part->update_shape = False;
 }
 
@@ -227,7 +225,7 @@ clear_window_shape (ButtonWidget ww)
 
   while (XtParent(parent))  parent = XtParent (parent);
   XShapeCombineMask (XtDisplay (parent), XtWindow (parent), ShapeBounding,
-		     0, 0, None, ShapeSet);
+                     0, 0, None, ShapeSet);
   part->update_shape = False;
 }
 
@@ -244,19 +242,19 @@ Redisplay (Widget w, XEvent *event, Region region)
 
     if (! part->set) {
       XCopyArea (dpy, part->icon.foreground, XtWindow(w), part->gc,
-		 0, 0, ww->core.width, ww->core.height,
-		 part->normal_x, part->normal_y);
+                 0, 0, ww->core.width, ww->core.height,
+                 part->normal_x, part->normal_y);
     } else {
       XCopyArea (dpy, part->active_icon.foreground, XtWindow(w), part->gc,
-		 0, 0, ww->core.width, ww->core.height,
-		 part->active_x, part->active_y);
+                 0, 0, ww->core.width, ww->core.height,
+                 part->active_x, part->active_y);
     }
   }
 }
 
 static Boolean
 SetValues (Widget current, Widget request, Widget new,
-	   ArgList args, Cardinal *num_args)
+           ArgList args, Cardinal *num_args)
 {
   ButtonWidget ww = (ButtonWidget) new;
   ButtonWidget ww_old = (ButtonWidget) current;
@@ -266,10 +264,10 @@ SetValues (Widget current, Widget request, Widget new,
   if (ww->button.icon.mask != ww_old->button.icon.mask
       || ww->button.active_icon.mask != ww_old->button.active_icon.mask) {
     unsigned  width1, height1, width2, height2;
-    
+
     get_pixmap_dimensions (dpy, ww->button.icon.foreground, &width1, &height1);
     get_pixmap_dimensions (dpy, ww->button.active_icon.foreground,
-			   &width2, &height2);
+                           &width2, &height2);
     if (((ButtonWidget)request)->core.width == 0)
       ww->button.auto_width = True;
     if (ww->button.auto_width) {

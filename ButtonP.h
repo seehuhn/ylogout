@@ -1,8 +1,7 @@
 /* ButtonP.h - Private Button widget declaration
  *
  * Copyright (C) 1998  Jochen Voss.
- *
- * $Id$ */
+ */
 
 #ifndef FILE_BUTTONP_H_SEEN
 #define FILE_BUTTONP_H_SEEN

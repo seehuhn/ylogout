@@ -2,9 +2,6 @@
  *
  * Copyright (C) 1998  Jochen Voss.  */
 
-static const  char  rcsid[] = "$Id$";
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -43,7 +40,7 @@ die_cb (Widget w, XtPointer client_data, XtPointer call_data)
   exit (0);
 }
 
-static void 
+static void
 quit_cb (Widget w, XtPointer client_data, XtPointer call_data)
 /* Callback, which is triggered by the button.  If the session manager
  * connection is active send `RequestSaveYourself' to the session
@@ -52,11 +49,11 @@ quit_cb (Widget w, XtPointer client_data, XtPointer call_data)
   SmcConn  smc_conn;
 
   XtVaGetValues (toplevel,
-		 XtNconnection, &smc_conn,
-		 NULL);
+                 XtNconnection, &smc_conn,
+                 NULL);
   if (smc_conn) {
     SmcRequestSaveYourself (smc_conn, SmSaveBoth, True, SmInteractStyleAny,
-			    False, True);
+                            False, True);
   } else {
     XtAppSetExitFlag (app_con);
   }
@@ -103,31 +100,31 @@ main (int argc, char **argv)
   Cardinal  i;
 
   toplevel = XtVaOpenApplication (&app_con, "Ylogout",
-				  options, XtNumber (options),
-				  &argc, argv,
-				  fallback_resources, sessionShellWidgetClass,
-				  XtNtitle, "Logout",
-				  XtNiconName, "Logout",
-				  XtVaTypedArg, XtNcurrentDirectory,
-				    XtRString, XtCurrentDirectory,
-				    strlen(XtCurrentDirectory)+1,
-				  NULL);
+                                  options, XtNumber (options),
+                                  &argc, argv,
+                                  fallback_resources, sessionShellWidgetClass,
+                                  XtNtitle, "Logout",
+                                  XtNiconName, "Logout",
+                                  XtVaTypedArg, XtNcurrentDirectory,
+                                    XtRString, XtCurrentDirectory,
+                                    strlen(XtCurrentDirectory)+1,
+                                  NULL);
 
   XtAddEventHandler (toplevel, NoEventMask, True,
                      _XEditResCheckMessages, NULL);
-  
+
   if (argc != 1) {
     fprintf (stderr, "usage:  %s [+shape] [-icon file.xpm]\n", argv[0]);
     /* do not exit since this is the first program run */
   }
-  
+
   XtAddCallback (toplevel, XtNsaveCallback, save_cb, NULL);
   XtAddCallback (toplevel, XtNdieCallback, die_cb, NULL);
   XtAddCallback (toplevel, XtNcancelCallback, cancel_cb, NULL);
   XtAddCallback (toplevel, XtNsaveCompleteCallback, save_complete_cb, NULL);
 
   button = XtCreateManagedWidget ("button", buttonWidgetClass, toplevel,
-				  NULL, 0);
+                                  NULL, 0);
   XtAddCallback (button, XtNcallback, quit_cb, NULL);
 
   XtRealizeWidget (toplevel);
